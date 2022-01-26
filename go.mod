@@ -1,3 +1,3 @@
-module master_go_programming
+module learning-go
 
 go 1.17
