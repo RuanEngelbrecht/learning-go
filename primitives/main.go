@@ -26,7 +26,7 @@ func main() {
 	var r byte = 'a'
 	fmt.Printf("%v %T\n", r, r)
 
-	//	Can't mix types of the same family. Convert.
+	// Can't mix types of the same family. Convert.
 	var a int = 1
 	var b int8 = 2
 	fmt.Println(a + int(b))
@@ -50,7 +50,7 @@ func main() {
 	v = 2e10
 	fmt.Printf("%v %T\n", v, v)
 
-	//Complex numbers
+	// Complex numbers
 	var w complex64 = 1 + 2i
 	fmt.Printf("%v %T\n", w, w)
 
