@@ -7,7 +7,7 @@ import (
 
 // 2. Structs
 // Declaration: struct struct-name{key: value, key: value}
-// Structs are used to group data together.
+// Collections of disparate data types that describe a single concept.
 // When exporting a struct (uppercase), all fields must be exported as well.
 
 type Doctor struct {
@@ -37,7 +37,7 @@ type Bird struct {
 
 // Tags
 // Structs can be tagged with metadata.
-// Validation / Encoding / Decoding / ORM / Defaults / Config / etc.
+// Validation / Encoding / Decoding / ORM / Defaults / Config / Field mapping / etc.
 
 type Person struct {
 	Name string `required:"true" max:"100"`
@@ -47,6 +47,7 @@ func main() {
 	// 1. Maps
 	// Key-value pairs.
 	// Syntax: map[key-type]value-type{key: value}
+	// Multiple assignments refer to the same underlying data.
 
 	// Can use make function to create a map.
 	a := make(map[string]int)
@@ -78,7 +79,7 @@ func main() {
 	delete(statePopulations, "Georgia")
 	fmt.Println(statePopulations)
 
-	// Comokay syntax to check if a key exists in a map.
+	// Comma ok syntax to check if a key exists in a map.
 	population, ok := statePopulations["Georgia"] // use _ to ignore the value.
 	fmt.Println(population, ok)
 
@@ -126,7 +127,7 @@ func main() {
 	fmt.Println(cBird)
 
 	// Tags.
-	// Using reflection to get tags and pass to some validation framework.
+	// Using reflection to get tags and pass to some validation framework etc.
 	t := reflect.TypeOf(Person{})
 	field, _ := t.FieldByName("Name")
 	fmt.Println(field.Tag)
