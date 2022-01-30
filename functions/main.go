@@ -13,6 +13,12 @@ func (g *greeter) greet() {
 	g.name = "Ghost"
 }
 
+type counter int
+
+func (c counter) increment() counter {
+	return c + 1
+}
+
 func main() {
 	// Basic functions
 	sayMessage("Hello Go!")
@@ -58,6 +64,9 @@ func main() {
 	}
 	g.greet()
 	fmt.Println(g.name)
+
+	var count counter = 1
+	fmt.Println(count.increment())
 }
 
 func sayMessage(msg string) {
