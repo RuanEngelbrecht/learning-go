@@ -35,7 +35,7 @@ func main() {
 		fmt.Println(d)
 	}
 
-	// Anonymous functions
+	// Anonymous functions -> IIFE (Immediately Invoked Function Expression)
 	func() {
 		fmt.Println("Anonymous function")
 	}()
@@ -46,7 +46,7 @@ func main() {
 		}(i)
 	}
 
-	// Functions as variables
+	// Functions as variables -> func() is a type
 	f := func(i int) {
 		fmt.Println(i)
 	}
