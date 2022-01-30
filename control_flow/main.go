@@ -133,7 +133,9 @@ func main() {
 	// Recover.
 
 	// Recover is a built-in function that is used to handle panics.
+	// Only useful in deferred functions.
 	// Panics happen after defer statements are executed.
+	// Current function will not attempt to continue, but higher functions in the call stack will.
 
 	// fmt.Println("start")
 	// defer func() {
