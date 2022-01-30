@@ -1,6 +1,11 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"io/ioutil"
+	"log"
+	"net/http"
+)
 
 func main() {
 
@@ -74,4 +79,69 @@ func main() {
 	default:
 		fmt.Println("another type")
 	}
+
+	// Defer.
+
+	// Defer is used to ensure that a function call is executed after all other
+	// functions have been executed in the current function call stack.
+
+	// Defer is useful for closing resources, or for waiting for a group of goroutines
+	// to finish before continuing.
+	// LIFO order.
+
+	defer fmt.Println("start")
+	defer fmt.Println("middle")
+	defer fmt.Println("end")
+
+	// Common pattern: group the opening and closing of a resource.
+	// Easy to forget to close a resource.
+	// Use defer to ensure that the resource is closed at the end of the function call.
+
+	res, err := http.Get("http://www.google.com/robots.txt")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer res.Body.Close()
+	robots, err := ioutil.ReadAll(res.Body)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Printf("%s", robots)
+
+	// When working with resources in a loop, you might not want to defer the closing of the resource.
+	// You can delegate the closing of a resource to another function.
+
+	// defer takes the value at the time of defer (eager), not the value at the time of the defer call.
+	a := "a = start"
+	defer fmt.Println(a)
+	a = "a = end"
+
+	// Panic.
+
+	// In Go we don't have exceptions, we use error handling.
+	// Panic is a built-in function that stops the execution of the current function and
+	// returns control to the caller.
+
+	// http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+	// 	w.Write([]byte("Hello Go!"))
+	// })
+	// serverErr := http.ListenAndServe(":8080", nil)
+	// if serverErr != nil {
+	// 	panic(serverErr.Error())
+	// }
+
+	// Recover.
+
+	// Recover is a built-in function that is used to handle panics.
+	// Panics happen after defer statements are executed.
+
+	// fmt.Println("start")
+	// defer func() {
+	// 	if err := recover(); err != nil {
+	// 		fmt.Println("Recovered in f", err)
+	// 		panic(err) // If you can't recover, you can rethrow the error.
+	// 	}
+	// }()
+	// panic("something went wrong")
+	// fmt.Println("end")
 }
