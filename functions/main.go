@@ -15,8 +15,8 @@ func (g *greeter) greet() {
 
 type counter int
 
-func (c counter) increment() counter {
-	return c + 1
+func (c *counter) increment() counter {
+	return *c + 1
 }
 
 func main() {
