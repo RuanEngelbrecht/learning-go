@@ -112,7 +112,7 @@ func main() {
 	// time.Sleep(100 * time.Millisecond)
 
 	// Closing the logger channel using select statements
-	go logger2()
+	go logger()
 	logCh <- logEntry{time.Now(), logInfo, "App is starting up..."}
 	logCh <- logEntry{time.Now(), logInfo, "App is shutting down..."}
 	time.Sleep(100 * time.Millisecond)
@@ -126,7 +126,7 @@ func main() {
 // 	}
 // }
 
-func logger2() {
+func logger() {
 	for {
 		select {
 		case entry := <-logCh:
